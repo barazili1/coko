@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --font-ar: 'Jzoor', 'Cairo', sans-serif;
+  --font-en: 'Ethnocentric', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[#050505] text-[#e4e4e7] overflow-x-hidden;
+    font-family: 'Jzoor', 'Cairo', sans-serif;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-[rgba(12,12,14,0.7)] backdrop-blur-xl border border-[rgba(239,68,68,0.1)];
+  }
+  
+  .bg-grid-moving {
+    background-image: 
+      linear-gradient(rgba(239, 68, 68, 0.05) 1px, transparent 1px), 
+      linear-gradient(90deg, rgba(239, 68, 68, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
