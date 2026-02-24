@@ -18,10 +18,10 @@ export const SelectionScreen: React.FC<SelectionScreenProps> = ({ onSelect, lang
   const platforms = [
     {
       id: '1XBET' as Platform,
-      name: 'Goobet',
+      name: 'DBbet',
       description: 'Optimized Uplink',
       tag: 'STABLE',
-      logo: 'https://image2url.com/r2/default/images/1770041414359-d610ba00-5bd4-4a01-8316-eeedba658118.png',
+      logo: 'https://image2url.com/r2/default/images/1771955657659-30f91fe6-070b-4b37-bc53-66de43dc5b87.png',
       color: 'from-blue-600/20 to-transparent',
       borderColor: 'group-hover:border-blue-500/50',
       accentColor: 'text-blue-500',

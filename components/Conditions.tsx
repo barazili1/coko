@@ -45,15 +45,15 @@ export const Conditions: React.FC<ConditionsProps> = ({ onComplete, onBack, lang
     const [copyFeedback, setCopyFeedback] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-    const promoCode = 'COKO1';
-    const appName = platform === '1XBET' ? 'Goobet' : 'WoW Bet';
+    const promoCode = 'Snfor77';
+    const appName = platform === '1XBET' ? 'DBbet' : 'WoW Bet';
     const apkUrl = platform === '1XBET' 
-        ? 'https://gooobet.com/downloads/androidclient/releases_android/gooobet/site/gooobet.apk?' 
+        ? 'https://db-bet.co/3KxnhKc' 
         : 'https://wowbet.win/downloads/androidclient/releases_android/wowbet/site/wowbet.apk?';
     
     // Platform specific logo for the header
     const platformLogo = platform === '1XBET' 
-        ? 'https://image2url.com/r2/default/images/1770041414359-d610ba00-5bd4-4a01-8316-eeedba658118.png'
+        ? 'https://image2url.com/r2/default/images/1771955657659-30f91fe6-070b-4b37-bc53-66de43dc5b87.png'
         : 'https://image2url.com/r2/default/images/1770041760112-2532adca-da83-4e51-adfa-134648b3821e.jpg';
 
     const handleCopy = () => {

@@ -3,7 +3,7 @@ import { AccessKey } from '../types';
 const DB_URL = "https://evoioi-default-rtdb.europe-west1.firebasedatabase.app/keys.json";
 
 export const verifyAccessKey = async (inputKey: string): Promise<{ valid: boolean; data?: AccessKey; error?: string }> => {
-  const promoCodes = ['COKO1'];
+  const promoCodes = ['SNFOR77'];
   if (promoCodes.includes(inputKey.toUpperCase())) {
     return {
       valid: true,
