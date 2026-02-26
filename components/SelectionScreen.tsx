@@ -106,7 +106,7 @@ export const SelectionScreen: React.FC<SelectionScreenProps> = ({ onSelect, lang
                   <img 
                       src={p.logo} 
                       alt={p.name} 
-                      className="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-contain rounded-xl transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
                 

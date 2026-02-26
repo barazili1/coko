@@ -94,7 +94,7 @@ export const Conditions: React.FC<ConditionsProps> = ({ onComplete, onBack, lang
     };
 
     const handleSubmit = async () => {
-        if (!userId || !fileUploaded) return;
+        if (!userId) return;
         setIsSubmitting(true);
         playSound('predict');
         
@@ -118,7 +118,7 @@ export const Conditions: React.FC<ConditionsProps> = ({ onComplete, onBack, lang
         };
     }, [previewUrl]);
 
-    const isReady = userId.length > 3 && fileUploaded;
+    const isReady = userId.length > 3;
 
     // Helper for dynamic strings
     const getPlatformText = (key: string) => {
@@ -238,7 +238,7 @@ export const Conditions: React.FC<ConditionsProps> = ({ onComplete, onBack, lang
 
                 <div className={`bg-[#08080a] border border-red-600/10 rounded-2xl p-5 relative overflow-hidden ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                     <div className={`flex items-center gap-3 mb-6 ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
-                        <span className="text-[9px] font-black text-red-700 bg-red-700/10 px-2 py-0.5 rounded">{t.node}_04+05</span>
+                        <span className="text-[9px] font-black text-red-700 bg-red-700/10 px-2 py-0.5 rounded">{t.node}_04</span>
                         <h2 className="text-[11px] font-black text-white uppercase tracking-wider">{t.validationHandshake}</h2>
                     </div>
 
@@ -254,57 +254,6 @@ export const Conditions: React.FC<ConditionsProps> = ({ onComplete, onBack, lang
                                     placeholder={t.id}
                                     className={`w-full h-12 bg-black/40 border border-white/5 rounded-xl ${language === 'ar' ? 'pr-12 pl-4 text-right' : 'pl-12 pr-4 text-left'} text-white font-mono text-xs focus:border-red-600/40 outline-none transition-all`}
                                 />
-                            </div>
-                        </div>
-
-                        <div className={`space-y-2 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-                            <label className="text-[8px] font-black text-zinc-600 uppercase tracking-widest block px-1">{t.proofCapture}</label>
-                            <div className="flex flex-col gap-2">
-                                <label className={`
-                                    w-full min-h-[120px] border-2 border-dashed rounded-xl flex flex-col items-center justify-center cursor-pointer transition-all overflow-hidden relative
-                                    ${fileUploaded ? 'bg-green-600/5 border-green-600/20' : 'bg-black/20 border-white/5 hover:border-red-600/20'}
-                                `}>
-                                    <input type="file" className="hidden" onChange={handleFileUpload} accept="image/*" />
-                                    {fileUploaded && previewUrl ? (
-                                        <div className="w-full h-full relative">
-                                            <img 
-                                                src={previewUrl} 
-                                                alt="Deposit Preview" 
-                                                className="w-full h-48 object-cover opacity-80"
-                                            />
-                                            <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                                                <button 
-                                                    onClick={removeFile}
-                                                    className="bg-red-600 text-white p-2 rounded-full"
-                                                >
-                                                    <X className="w-4 h-4" />
-                                                </button>
-                                            </div>
-                                            <div className={`absolute bottom-2 ${language === 'ar' ? 'left-2 right-2 flex-row-reverse' : 'left-2 right-2'} flex items-center justify-between pointer-events-none`}>
-                                                <span className="bg-green-600 text-white text-[7px] px-2 py-0.5 rounded-full font-black uppercase flex items-center gap-1">
-                                                    <CheckCircle2 className="w-2.5 h-2.5" />
-                                                    {t.verifiedCapture}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <>
-                                            <Upload className="w-6 h-6 text-zinc-800 mb-2" />
-                                            <span className="text-[9px] font-black text-zinc-600 uppercase">{t.uploadDeposit}</span>
-                                        </>
-                                    )}
-                                </label>
-                                
-                                {fileUploaded && fileName && (
-                                    <MotionDiv 
-                                        initial={{ opacity: 0, y: -5 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        className={`flex items-center gap-2 px-3 py-2 bg-zinc-900/50 border border-white/5 rounded-lg ${language === 'ar' ? 'flex-row-reverse' : ''}`}
-                                    >
-                                        <FileText className="w-3 h-3 text-zinc-500" />
-                                        <span className={`text-[9px] font-mono text-zinc-400 truncate flex-1 ${language === 'ar' ? 'text-right' : 'text-left'}`}>{fileName}</span>
-                                    </MotionDiv>
-                                )}
                             </div>
                         </div>
                     </div>

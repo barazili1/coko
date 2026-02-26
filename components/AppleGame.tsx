@@ -52,7 +52,7 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
   const [currentTime, setCurrentTime] = useState(new Date());
   const [syncedId, setSyncedId] = useState<string | null>(() => localStorage.getItem('synced_platform_id'));
 
-  const [rowCount] = useState(5);
+  const [rowCount] = useState(10);
   const [currentRow, setCurrentRow] = useState(-1);
   const [clickRipples, setClickRipples] = useState<{ id: number; x: number; y: number }[]>([]);
 
@@ -156,9 +156,20 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
   };
 
   const handleUp = (e: React.MouseEvent) => {
-      if (!currentResult || currentRow >= rowCount - 1) return;
+      if (!currentResult) return;
       addRipple(e);
       playSound('click');
+      
+      // If we've reached the end of the current path, generate a new random step
+      if (currentRow >= currentResult.path.length - 1) {
+          const nextStep = Math.floor(Math.random() * 5);
+          const updatedResult = {
+              ...currentResult,
+              path: [...currentResult.path, nextStep]
+          };
+          setCurrentResult(updatedResult);
+      }
+      
       setCurrentRow(prev => prev + 1);
   };
 
@@ -353,8 +364,8 @@ export const AppleGame: React.FC<AppleGameProps> = ({ onBack, accessKeyData, lan
                         <MotionButton 
                             whileTap={{ scale: 0.95 }}
                             onClick={handleUp} 
-                            disabled={gameState === GameState.ANALYZING || isUpdating || !currentResult || currentRow >= rowCount - 1} 
-                            className={`group relative h-16 rounded-xl overflow-hidden font-black tracking-[0.4em] uppercase text-xs transition-all ${!currentResult || currentRow >= rowCount - 1 ? 'bg-zinc-900 text-zinc-700' : 'bg-red-700 text-white shadow-[0_0_30px_rgba(239,68,68,0.2)]'}`}
+                            disabled={gameState === GameState.ANALYZING || isUpdating || !currentResult} 
+                            className={`group relative h-16 rounded-xl overflow-hidden font-black tracking-[0.4em] uppercase text-xs transition-all ${!currentResult ? 'bg-zinc-900 text-zinc-700' : 'bg-red-700 text-white shadow-[0_0_30px_rgba(239,68,68,0.2)]'}`}
                         >
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                             <div className="relative z-10 flex items-center justify-center gap-4">
